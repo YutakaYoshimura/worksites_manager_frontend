@@ -48,7 +48,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text(detailState.worksites!.name , style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text(detailState.worksites?.name ?? '' , style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // 施工箇所
                 Container(
@@ -58,7 +58,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text(detailState.worksites!.subName, style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text(detailState.worksites?.subName ?? '', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // 種別
                 Container(
@@ -68,7 +68,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text('${detailState.worksites!.type}:${typeInfoList[detailState.worksites!.type]}', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text('${detailState.worksites?.type ?? ''}:${typeInfoList[detailState.worksites?.type ?? '']}', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // 担当者
                 Container(
@@ -78,7 +78,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text(detailState.worksites!.staffName, style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text(detailState.worksites?.staffName ?? '', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // 現場写真
                 Container(
@@ -89,9 +89,9 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.only(top: 10, left: 10),
-                  child: detailState.worksites!.photo == ""
+                  child: detailState.worksites?.photo == null
                     ? const Text('読み込み中です', style: TextStyle(fontSize: 14), textAlign: TextAlign.left)
-                    : Image.memory(base64.decode(detailState.worksites!.photo)),
+                    : Image.memory(base64.decode(detailState.worksites?.photo ?? '')),
                 ),
                 Container(
                   width: double.infinity,
@@ -100,7 +100,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text(detailState.worksites!.address, style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text(detailState.worksites?.address ?? '', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // ステータス
                 Container(
@@ -110,7 +110,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text('${detailState.worksites!.status}：${statusInfoList[detailState.worksites!.status]}', style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text('${detailState.worksites?.status ?? ''}：${statusInfoList[detailState.worksites?.status ?? '']}', style: TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // 開始日（予定日）
                 Container(
@@ -120,7 +120,7 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: Text('${detailState.worksites!.startAt?.year}-${detailState.worksites!.startAt?.month}-${detailState.worksites!.startAt?.day}', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
+                  child: Text('${detailState.worksites?.startAt?.year ?? ''}-${detailState.worksites?.startAt?.month ?? ''}-${detailState.worksites?.startAt?.day ?? ''}', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left),
                 ),
                 // 終了日（予定日）
                 Container(
@@ -130,8 +130,8 @@ class WorksitesDetailPageBody extends HookConsumerWidget {
                 ),
                 SizedBox(
                   width: double.infinity,
-                  child: detailState.worksites!.endAt != null
-                    ? Text('${detailState.worksites!.endAt?.year}-${detailState.worksites!.endAt?.month}-${detailState.worksites!.endAt?.day}', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
+                  child: detailState.worksites?.endAt != null
+                    ? Text('${detailState.worksites?.endAt?.year ?? ''}-${detailState.worksites?.endAt?.month ?? ''}-${detailState.worksites?.endAt?.day ?? ''}', style: const TextStyle(fontSize: 20), textAlign: TextAlign.left)
                     : const Text('未定', style: TextStyle(fontSize: 20), textAlign: TextAlign.left)
                 ),
                 // 保存ボタン

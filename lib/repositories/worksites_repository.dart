@@ -11,20 +11,6 @@ class WorksitesRepository {
       .then((value) {
         // APIで返ってきたJSONをモデルに変換
         return WorksitesModel.fromJson(value as Map<String, dynamic>);
-      })
-      .catchError((e) {
-        int? errorCode = 0;
-        String? errorMessage = "";
-        switch (e.runtimeType) {
-          case DioError:
-            final res = (e as DioError).response;
-            if (res != null) {
-              errorCode = res.statusCode;
-              errorMessage = res.statusMessage;
-            }
-            break;
-          default:
-        }
       });
   }
 

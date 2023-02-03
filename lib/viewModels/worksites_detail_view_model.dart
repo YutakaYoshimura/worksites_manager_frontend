@@ -34,18 +34,25 @@ class WorksitesDetailViewModel extends StateNotifier<WorksitesDetailPageState> {
   final int id;
 
   Future<void> get() async {
-    try{
-      WorksitesModel data = await _worksitesRepository.get(1000);
-      state = state.copyWith(worksites: data);
-    } on HttpException catch (error) {
+    await _worksitesRepository.get(id)
+    .then((value) {
+      state = state.copyWith(worksites: value);
+    })
+    .catchError((e) {
+      int? errorCode = 0;
+      String? errorMessage = "";
+      switch (e.runtimeType) {
+        case DioError:
+          final res = (e as DioError).response;
+          if (res != null) {
+            errorCode = res.statusCode;
+          }
+          break;
+        default:
+      }
       state = state.copyWith(errorFlg: true);
-      var a = Error();
-    } catch (error, stacktrace) {
-      var dioError = DioError;
-      var a = DioErrorType.response;
-      state = state.copyWith(errorFlg: true);
-      state = state.copyWith(errorMsg: error.toString());
-    }
+      state = state.copyWith(errorMsg: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+    });
   }
 
   Future<void> del() async {
